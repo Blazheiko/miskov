@@ -73,51 +73,55 @@
 
         </nav>
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Меню</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbar1">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Головна <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Кадри</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Зарплата</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Продукція</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Покупці</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Замовлення</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Склад</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                            <a class="dropdown-item" href="#">Всі склади</a>
-                            <a class="dropdown-item" href="#">Склад №1</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Склад №2</a>
-                            <a class="dropdown-item" href="#">Склад №3</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Склад №4</a>
-                        </div>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Пошук" aria-label="Search">
-                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Пошук</button>
-                </form>
-            </div>
-        </nav>
+        <div class="container-fluid">
+            <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-info">
+                <a class="navbar-brand" href="#">Меню</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbar1">
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Головна <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('personnel') }}">Кадри</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Зарплата</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Продукція</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Покупці</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Замовлення</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Склад</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                                <a class="dropdown-item" href="#">Всі склади</a>
+                                <a class="dropdown-item" href="#">Склад №1</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Склад №2</a>
+                                <a class="dropdown-item" href="#">Склад №3</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Склад №4</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Пошук" aria-label="Search">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Пошук</button>
+                    </form>
+                </div>
+            </nav>
+
+        </div>
 
 
 

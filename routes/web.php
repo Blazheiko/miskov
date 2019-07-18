@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/personnel',              ['as' => 'personnel',        'uses' => 'PersonnelController@personnel']);
+Route::get('/personnel/create',       ['as' => 'personnel.create', 'uses' => 'PersonnelController@create']);
+Route::post('/personnel/add',         ['before' => 'csrf','as' => 'personnel.add', 'uses' => 'PersonnelController@add']);
+Route::get('/personnel/{user}/show',  ['as' => 'personnel.show',   'uses' => 'PersonnelController@show']);
+Route::get('/personnel/{user}/edit',  ['as' => 'personnel.edit',   'uses' => 'PersonnelController@edit']);
+Route::post('/personnel/store',       ['before' => 'csrf','as' => 'personnel.store',   'uses' => 'PersonnelController@store']);
