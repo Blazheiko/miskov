@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Personnel;
 use App\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PersonnelController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-    }
 
     /**
      * Display a listing of the personnel.
@@ -20,32 +20,38 @@ class PersonnelController extends Controller
     public function personnel(){
        // $user = Auth::user();
 
-        $personnel = User::all();
 
-        return view('personnel', ['personnel' => $personnel] );
+        $persons = Personnel::all();
+//        dd( "$persons" );
+
+        return view('personnel.personnel', ['persons' => $persons] );
     }
 
 
     public function add (Request $request){
-//        dd($request );
+
 
         $this->validate($request, [
-            'inn'=> 'unique:users|max:11',
-            'name'=> 'required|unique:users|max:255',
-            'passport'=>'required|unique:users|max:255',
+            'inn'=> 'unique:personnels|max:11',
+            'last_name'=>'required|max:255',
+            'name'=> 'required|max:255',
+            'patronymic'=> 'required|max:255',
+            'passport'=>'required|unique:personnels|max:255',
             'address'=>'max:255',
             'specialty'=>'max:255',
             'phone'=>'max:255',
             'birth_date'=>'required',
             'employment_date'=>'required',
             'description'=>'max:255',
-            'email'=>'unique:users|max:255',
+            'email'=>'unique:personnels|max:255',
         ]);
+        //dd($request );
 
-
-
-            $user = new User($request->all());
-            $user->save();
+            $personel = new Personnel($request->all());
+            $user = Auth::user();
+            $personel->user_id=$user->id;
+       //      dd($personal);
+            $personel->save();
 
 
         return redirect()->route('personnel');
@@ -59,8 +65,43 @@ class PersonnelController extends Controller
      */
     public function create()
     {
-        return view('create_user');
+        return view('personnel.create_user');
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $personnel = Personnel::find($id);
+        $creator = User::find($personnel->user_id);
+        //dd($personnel);
+
+        return view('personnel.edit_personnel')->with(['personnel'=>$personnel,'creator'=>$creator]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+
+        $personnel = Personnel::find($id);
+        $personnel->update($request->all());
+//        $user ->posts()->where('id',$id)->
+//        update(['title'=>$request->title, 'post'=>$request->get('post')]);
+
+        return redirect()->route('personnel');
+
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -97,36 +138,8 @@ class PersonnelController extends Controller
         return view('post')->with(['post'=>$post,'comments'=>$comments]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $post = Post::find($id);
 
-        return view('edit')->with('post', $post);
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-
-        $user = User::find(Auth::user()->id);
-        $user ->posts()->where('id',$id)->
-        update(['title'=>$request->title, 'post'=>$request->get('post')]);
-
-        return redirect()->route('blog');
-
-    }
 
     /**
      * Remove the specified resource from storage.

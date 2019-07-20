@@ -27,7 +27,21 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('П.І.Б.') }}</label>
+                                <label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('Прізвище') }}</label>
+
+                                <div class="col-md-8">
+                                    <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
+
+                                    @error('last_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Імя') }}</label>
 
                                 <div class="col-md-8">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -39,6 +53,22 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="patronymic" class="col-md-4 col-form-label text-md-right">{{ __('По батькові') }}</label>
+
+                                <div class="col-md-8">
+                                    <input id="patronymic" type="text" class="form-control @error('patronymic') is-invalid @enderror" name="patronymic" value="{{ old('patronymic') }}" required autocomplete="patronymic" autofocus>
+
+                                    @error('patronymic')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
 
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Почта E-Mail ') }}</label>
@@ -58,7 +88,7 @@
                                 <label for="passport" class="col-md-4 col-form-label text-md-right">{{ __('Серія та номер паспорту ') }}</label>
 
                                 <div class="col-md-8">
-                                    <input id="passport" type="text" class="form-control @error('email') is-invalid @enderror" name="passport" value="{{ old('passport') }}" required autocomplete="passport">
+                                    <input id="passport" type="text" class="form-control @error('passport') is-invalid @enderror" name="passport" value="{{ old('passport') }}" required autocomplete="passport">
 
                                     @error('passport')
                                     <span class="invalid-feedback" role="alert">
@@ -72,9 +102,10 @@
                                 <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Адресса ') }}</label>
 
                                 <div class="col-md-8">
-                                    <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
+                                    <textarea id="address" type="text" maxlength="255" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address"></textarea>
 
-                                    @error('passport')
+
+                                    @error('address')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -82,19 +113,19 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="specialty" class="col-md-4 col-form-label text-md-right">{{ __( 'Спеціальність') }}</label>
+                            {{--<div class="form-group row">--}}
+                                {{--<label for="specialty" class="col-md-4 col-form-label text-md-right">{{ __( 'Спеціальність') }}</label>--}}
 
-                                <div class="col-md-8">
-                                    <input id="specialty" type="text" class="form-control @error('specialty') is-invalid @enderror" name="specialty" value="{{ old('specialty') }}" required autocomplete="specialty">
+                                {{--<div class="col-md-8">--}}
+                                    {{--<input id="specialty" type="text" class="form-control @error('specialty') is-invalid @enderror" name="specialty" value="{{ old('specialty') }}" required autocomplete="specialty">--}}
 
-                                    @error('specialty')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
+                                    {{--@error('specialty')--}}
+                                    {{--<span class="invalid-feedback" role="alert">--}}
+                                        {{--<strong>{{ $message }}</strong>--}}
+                                    {{--</span>--}}
+                                    {{--@enderror--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
 
                             <div class="form-group row">
                                 <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __( 'Номер телефону') }}</label>
@@ -153,7 +184,8 @@
                                 <label for="description" class="col-md-4 col-form-label text-md-right">{{ __( 'Примітка') }}</label>
 
                                 <div class="col-md-8">
-                                    <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description">
+                                    <textarea id="description" type="text" maxlength="255" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description"></textarea>
+
 
                                     @error('description')
                                     <span class="invalid-feedback" role="alert">
