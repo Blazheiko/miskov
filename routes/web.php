@@ -26,4 +26,4 @@ Route::get('/personnel/{personnel}/show',  ['as' => 'personnel.show',   'uses' =
 Route::get('/personnel/{personnel}/edit',  ['as' => 'personnel.edit',   'uses' => 'PersonnelController@edit']);
 Route::post('/personnel/{personnel}/update',       ['before' => 'csrf','as' => 'personnel.store',   'uses' => 'PersonnelController@update']);
 
-Route::resource('specialty', 'SpecialtyController');
+Route::resource('specialty','SpecialtyController');

@@ -14,7 +14,7 @@
                         <div class="panel-heading">
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
-                                    <a href="{{url('/personnel/create')}}" class="btn btn-primary">Добавити нову спеціальність</a>
+                                    <a href="{{url('/specialty/create')}}" class="btn btn-primary">Добавити нову спеціальність</a>
                                 </div>
                             </div>
                             <h1>Список спеціальностей</h1>
@@ -51,7 +51,7 @@
                                         <td>
                                             <div class="form-group">
                                                 <div class="col-md-8 col-md-offset-4">
-                                                    <a href="{{url('/personnel/'.$person->id.'/edit')}}" class="btn btn-primary">Редагувати</a>
+                                                    <a href="{{url('/personnel/'.$specialty->id.'/edit')}}" class="btn btn-primary">Редагувати</a>
                                                 </div>
                                             </div>
                                         </td>

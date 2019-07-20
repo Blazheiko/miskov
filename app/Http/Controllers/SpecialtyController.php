@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Specialty;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SpecialtyController extends Controller
 {
@@ -16,8 +17,6 @@ class SpecialtyController extends Controller
     public function index()
     {
         $specialtys = Specialty::all();
-//        $creator = User::find($specialty->user_id);
-//        dd( "$persons" );
 
         return view('specialty.specialty', ['specialtys' => $specialtys] );
     }
@@ -29,7 +28,7 @@ class SpecialtyController extends Controller
      */
     public function create()
     {
-        //
+        return view('specialty.create_specialty');
     }
 
     /**
@@ -40,7 +39,20 @@ class SpecialtyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        dd($request );
+        $this->validate($request, [
+            'name_special'=> 'unique:specialties|required|max:255',
+            'discr_special'=>'required|max:255',
+            'tariff'=> 'required|max:6',
+            'hourly'=> 'required'
+        ]);
+
+        $specialty = new Specialty($request->all());
+        $user = Auth::user();
+        $specialty->user_id=$user->id;
+        $specialty->save();
+
+        return redirect()->route('specialty.index');
     }
 
     /**

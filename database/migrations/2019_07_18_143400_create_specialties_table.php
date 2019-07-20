@@ -17,7 +17,7 @@ class CreateSpecialtiesTable extends Migration
             $table->Increments('id');
             $table->string('name_special')->unique();
             $table->string('discr_special');
-            $table->integer('tariff');
+            $table->string('tariff');
             $table->integer('hourly');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
