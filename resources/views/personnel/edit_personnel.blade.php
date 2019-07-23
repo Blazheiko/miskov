@@ -114,6 +114,39 @@
                                 </div>
                             </div>
 
+{{--                            <div class="form-group row">--}}
+{{--                                <label for="specialty" class="col-md-4 col-form-label text-md-right">{{ __( 'Спеціальність') }}</label>--}}
+
+{{--                                <div class="col-md-8">--}}
+{{--                                    <p><select name="specialty">--}}
+{{--                                            @foreach($specialtys as $specialty)--}}
+{{--                                                <option value={{$specialty->name_special }}> {{ $specialty ->name_special}} </option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select></p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
+                            <div class="form-group row">
+                                <label for="specialty" class="col-md-4 col-form-label text-md-right">{{ __( 'ID Спеціальності') }}</label>
+
+                                <div class="col-md-8">
+                                    {{-- <input id="specialty" type="text" class="form-control @error('specialty') is-invalid @enderror" name="specialty" value="{{ old('specialty') }}" required autocomplete="specialty">--}}
+
+                                    <p><input type="search" list="specialtys" name="specialty" value="{{$personnel->specialty }}" >
+                                        <datalist id="specialtys">
+                                            @foreach($specialtys as $specialty)
+                                            <option value="{{$specialty->id}}"> {{ $specialty ->name_special}} </option>
+                                            @endforeach
+                                        </datalist></p>
+
+                                    @error('specialty')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             {{--<div class="form-group row">--}}
                             {{--<label for="specialty" class="col-md-4 col-form-label text-md-right">{{ __( 'Спеціальність') }}</label>--}}
 

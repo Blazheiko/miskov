@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Personnel;
 use App\Specialty;
 use App\User;
 use Illuminate\Http\Request;
@@ -74,7 +75,11 @@ class SpecialtyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $specialty = Specialty::find($id);
+        $creator = User::find($specialty->user_id);
+        //dd($personnel);
+
+        return view('specialty.edit_specialty')->with(['specialty'=>$specialty,'creator'=>$creator]);
     }
 
     /**

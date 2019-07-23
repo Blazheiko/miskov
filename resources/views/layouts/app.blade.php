@@ -54,7 +54,7 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="z-index: 99999999">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -117,10 +117,10 @@
                             </div>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Пошук" aria-label="Search">
-                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Пошук</button>
-                    </form>
+{{--                    <form class="form-inline my-2 my-lg-0">--}}
+{{--                        <input class="form-control mr-sm-2" type="search" placeholder="Пошук" aria-label="Search">--}}
+{{--                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Пошук</button>--}}
+{{--                    </form>--}}
                 </div>
             </nav>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Personnel;
+use App\Specialty;
 use App\User;
 
 use Illuminate\Http\Request;
@@ -65,7 +66,8 @@ class PersonnelController extends Controller
      */
     public function create()
     {
-        return view('personnel.create_user');
+        $specialtys = Specialty::all('id','name_special');
+        return view('personnel.create_user')->with(['specialtys'=>$specialtys]);
     }
 
     /**
@@ -78,9 +80,11 @@ class PersonnelController extends Controller
     {
         $personnel = Personnel::find($id);
         $creator = User::find($personnel->user_id);
+        $specialtys = Specialty::all('id','name_special');
         //dd($personnel);
 
-        return view('personnel.edit_personnel')->with(['personnel'=>$personnel,'creator'=>$creator]);
+        return view('personnel.edit_personnel')->with(['personnel'=>$personnel,'creator'=>$creator,
+                                                             'specialtys'=>$specialtys]);
     }
 
     /**

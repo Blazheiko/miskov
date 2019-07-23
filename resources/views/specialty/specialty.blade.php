@@ -51,7 +51,7 @@
                                         <td>
                                             <div class="form-group">
                                                 <div class="col-md-8 col-md-offset-4">
-                                                    <a href="{{url('/personnel/'.$specialty->id.'/edit')}}" class="btn btn-primary">Редагувати</a>
+                                                    <a href="{{url('/specialty/'.$specialty->id.'/edit')}}" class="btn btn-primary">Редагувати</a>
                                                 </div>
                                             </div>
                                         </td>
