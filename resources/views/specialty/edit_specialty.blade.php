@@ -8,8 +8,9 @@
                     <div class="card-header">{{ __('Редагування спеціальності') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('specialty.store') }}">
+                        <form method="POST" action="{{ '/specialty/'.$specialty->id}}">
                             @csrf
+                            @method('PUT')
 
                             <div class="form-group row">
                                 <label for="name_special" class="col-md-4 col-form-label text-md-right">{{ __('Назва') }}</label>

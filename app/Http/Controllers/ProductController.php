@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Personnel;
+use App\Product;
 use App\Specialty;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SpecialtyController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class SpecialtyController extends Controller
      */
     public function index()
     {
-        $specialtys = Specialty::all();
+        $products = Product::all();
 
-        return view('specialty.specialty', ['specialtys' => $specialtys] );
+        return view('products.product', ['products' => $products] );
     }
 
     /**
@@ -29,7 +29,7 @@ class SpecialtyController extends Controller
      */
     public function create()
     {
-        return view('specialty.create_specialty');
+        return view('products.create_product');
     }
 
     /**
@@ -40,20 +40,21 @@ class SpecialtyController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request );
         $this->validate($request, [
-            'name_special'=> 'unique:specialties|required|max:255',
-            'discr_special'=>'required|max:255',
-            'tariff'=> 'required|digits_between:1,6',
-            'hourly'=> 'required'
+            'code'=> 'unique:products|required|max:255',
+            'name'=> 'unique:products|required|max:255',
+            'discr'=>'required|max:255',
+            'packing'=> 'required|digits_between:1,6',
+            'price'=> 'required|digits_between:1,6',
+
         ]);
 
-        $specialty = new Specialty($request->all());
+        $product = new Product($request->all());
         $user = Auth::user();
-        $specialty->user_id=$user->id;
-        $specialty->save();
+        $product->user_id=$user->id;
+        $product->save();
 
-        return redirect()->route('specialty.index');
+        return redirect()->route('product.index');
     }
 
     /**
@@ -75,11 +76,11 @@ class SpecialtyController extends Controller
      */
     public function edit($id)
     {
-        $specialty = Specialty::find($id);
-        $creator = User::find($specialty->user_id);
+        $product = Product::find($id);
+        $creator = User::find($product->user_id);
         //dd($personnel);
 
-        return view('specialty.edit_specialty')->with(['specialty'=>$specialty,'creator'=>$creator]);
+        return view('products.edit_product')->with(['product'=>$product,'creator'=>$creator]);
     }
 
     /**
@@ -91,11 +92,11 @@ class SpecialtyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $specialty = Specialty::find($id);
-        $specialty->update($request->all());
-        $specialty->user_id = (Auth::user())->id ;
+        $product = Product::find($id);
+        $product->update($request->all());
+        $product->user_id = (Auth::user())->id ;
 
-        return redirect()->route('specialty.index');
+        return redirect()->route('product.index');
     }
 
     /**

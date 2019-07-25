@@ -84,10 +84,13 @@
                 <div class="collapse navbar-collapse" id="navbar1">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Головна <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="">Головна <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('personnel') }}">Кадри</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('specialty') }}">Зміни</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('specialty') }}">Спеціальності</a>
@@ -96,7 +99,7 @@
                             <a class="nav-link" href="#">Зарплата</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Продукція</a>
+                            <a class="nav-link" href="{{ url('product') }}">Продукція</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Покупці</a>
