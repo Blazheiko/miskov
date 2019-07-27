@@ -22,6 +22,7 @@ class CreateListPersonnelsTable extends Migration
             $table->integer('specialties_id')->unsigned();
             $table->foreign('specialties_id')->references('id')->on('specialties');
             $table->integer('work_time');
+            $table->boolean('processed');
             $table->timestamps();
         });
     }

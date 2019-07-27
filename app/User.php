@@ -51,4 +51,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Product');
     }
+
+    public function listPersonnels()
+    {
+        return $this->hasMany('App\ListPersonnel');
+    }
+
+    public function workingShifts()
+    {
+        return $this->hasMany('App\ListPersonnel');
+    }
 }

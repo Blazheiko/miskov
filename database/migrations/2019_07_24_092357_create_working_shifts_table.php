@@ -18,6 +18,9 @@ class CreateWorkingShiftsTable extends Migration
             $table->date('date');
             $table->time('time_start');
             $table->time('time_end');
+            $table->string('discr');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
