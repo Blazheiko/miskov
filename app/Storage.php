@@ -10,4 +10,9 @@ class Storage extends Model
         'number','descr','places'
     ];
 
+    public function listStorages()
+    {
+        return $this->hasMany('App\ListStorage');
+    }
+
 }

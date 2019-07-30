@@ -90,7 +90,7 @@
                             <a class="nav-link" href="{{ url('personnel') }}">Кадри</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('specialty') }}">Зміни</a>
+                            <a class="nav-link" href="{{ url('workingShift') }}">Зміни</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('specialty') }}">Спеціальності</a>

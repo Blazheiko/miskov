@@ -9,7 +9,7 @@ class ListPersonnel extends Model
     //модель для списка робітників в зміні та фіксаціх робочих часів
 
     protected $fillable = [
-        'user_id','working_shifts_id','specialties_id','work_time','processed'
+        'date','user_id','working_shifts_id','specialties_id','work_time','processed'
     ];
 
 

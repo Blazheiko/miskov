@@ -6,9 +6,9 @@ use App\Personnel;
 use App\Specialty;
 use App\WorkingShift;
 use Illuminate\Http\Request;
-use App\Http\Controllers\WorkingShiftController;
+use Illuminate\Support\Facades\Auth;
 
-class ListPersonnelController extends Controller
+class WorkingShiftController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,9 @@ class ListPersonnelController extends Controller
      */
     public function index()
     {
-        //
+        $workingShifts = WorkingShift::all();
+
+        return view('working_shift.working_shift', ['workingShifts' => $workingShifts] );
     }
 
     /**
@@ -25,14 +27,10 @@ class ListPersonnelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-       // dd($idWS);
-        $workingShift= WorkingShift::find($id);
-        $personnels = Personnel::all();
-        $specialtys = Specialty::all('id','name_special');
-        return view('list_personnel.create_list_personnel')
-            ->with(['workingShift'=>$workingShift,'personnels'=>$personnels,'specialtys'=>$specialtys]);
+
+        return view('working_shift.create_working_shift');
     }
 
     /**
@@ -43,7 +41,13 @@ class ListPersonnelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+        $workingShift =new WorkingShift ($request->all());
+        $workingShift->user_id=$user->id;
+        $workingShift->save();
+
+
+        return redirect()->route('listPersonnel.create',[$workingShift]);
     }
 
     /**

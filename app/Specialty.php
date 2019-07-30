@@ -13,4 +13,9 @@ class Specialty extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function listPersonnels()
+    {
+        return $this->hasMany('App\ListPersonnel');
+    }
 }
