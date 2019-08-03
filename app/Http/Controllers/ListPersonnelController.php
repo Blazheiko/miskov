@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ListPersonnel;
 use App\Personnel;
 use App\Specialty;
 use App\WorkingShift;
@@ -28,9 +29,24 @@ class ListPersonnelController extends Controller
     public function create($id)
     {
        // dd($idWS);
+
         $workingShift= WorkingShift::find($id);
         $personnels = Personnel::all();
         $specialtys = Specialty::all('id','name_special');
+        $listPersonnels =array();
+
+        foreach ($personnels as $personnel)
+        {
+            $listPersonnel = new ListPersonnel();
+            $listPersonnel->user_id = $personnel->id;
+            $listPersonnel->work_time = 0;
+            $listPersonnel->specialties_id = $personnel->specialty;
+            $listPersonnel->combined_time = 0;
+            $listPersonnel->combined_specialties_id = $personnel->specialty;
+            $listPersonnels[] =$listPersonnel;
+
+        }
+
         return view('list_personnel.create_list_personnel')
             ->with(['workingShift'=>$workingShift,'personnels'=>$personnels,'specialtys'=>$specialtys]);
     }

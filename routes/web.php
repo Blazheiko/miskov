@@ -26,6 +26,7 @@ Route::get('/personnel/{personnel}/show',   ['as' => 'personnel.show',   'uses' 
 Route::get('/personnel/{personnel}/edit',   ['as' => 'personnel.edit',   'uses' => 'PersonnelController@edit']);
 Route::post('/personnel/{personnel}/update',['before' => 'csrf','as' => 'personnel.store',   'uses' => 'PersonnelController@update']);
 
+Route::resource ('listPersonnel','ListPersonnelController',['except' => ['create']]);
 Route::get('/listPersonnel/{id}/create',['as' => 'listPersonnel.create', 'uses' => 'ListPersonnelController@create']);
 
 Route::resources(['specialty'=>'SpecialtyController',

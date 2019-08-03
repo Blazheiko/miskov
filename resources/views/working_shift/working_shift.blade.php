@@ -34,6 +34,7 @@
                                     <th scope="col">кінець</th>
                                     <th scope="col">табель</th>
                                     <th scope="col">продукція</th>
+                                    <th scope="col">Дата створення</th>
                                     <th scope="col">Дата редагування</th>
                                     <th scope="col">Редагувати</th>
                                 </tr>

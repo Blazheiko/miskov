@@ -9,22 +9,23 @@ class ListPersonnel extends Model
     //модель для списка робітників в зміні та фіксаціх робочих часів
 
     protected $fillable = [
-        'date','user_id','working_shifts_id','specialties_id','work_time','processed'
+        'user_id','full_name','specialties_id','work_time',
+        'combined_specialties_id','combined_time'
     ];
 
 
-    public function workingShift()
-    {
-        return $this->belongsTo('App\WorkingShift');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
-
-    public function Specialty()
-    {
-        return $this->belongsTo('App\Specialty');
-    }
+//    public function workingShift()
+//    {
+//        return $this->belongsTo('App\WorkingShift');
+//    }
+//
+//    public function user()
+//    {
+//        return $this->belongsTo('App\User');
+//    }
+//
+//    public function Specialty()
+//    {
+//        return $this->belongsTo('App\Specialty');
+//    }
 }

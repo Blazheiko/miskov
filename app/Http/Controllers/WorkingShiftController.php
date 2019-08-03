@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\ListPersonnel;
 use App\Personnel;
 use App\Specialty;
 use App\WorkingShift;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class WorkingShiftController extends Controller
 {
@@ -29,8 +31,26 @@ class WorkingShiftController extends Controller
      */
     public function create()
     {
+        $personnels = Personnel::all();
+        $specialtys = Specialty::all('id','name_special');
+        $listPersonnels =array();
 
-        return view('working_shift.create_working_shift');
+        foreach ($personnels as $personnel)
+        {
+            $listPersonnel = new ListPersonnel();
+            $listPersonnel->user_id = $personnel->id;
+            $listPersonnel->full_name = $personnel->last_name.' '.$personnel->name.' '.$personnel->patronymic.' '.$personnel->birth_date;
+            $listPersonnel->work_time = 0;
+            $listPersonnel->specialties_id = $personnel->specialty;
+            $listPersonnel->combined_time = 0;
+            $listPersonnel->combined_specialties_id = $personnel->specialty;
+            $listPersonnels[] = $listPersonnel;
+
+        }
+        Session::put('listPersonnels', $listPersonnels);
+
+        return view('working_shift.create_working_shift')
+            ->with(['listPersonnels'=>$listPersonnels,'specialtys'=>$specialtys]);
     }
 
     /**
@@ -41,9 +61,18 @@ class WorkingShiftController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request);
+        $listPersonnels = Session::pull('listPersonnels', null);
         $user = Auth::user();
         $workingShift =new WorkingShift ($request->all());
         $workingShift->user_id=$user->id;
+        for ($i = 0;$i < count($listPersonnels); $i++ )
+        {
+            $listPersonnels[$i]->work_time = work_time[i];
+
+
+        }
+
         $workingShift->save();
 
 

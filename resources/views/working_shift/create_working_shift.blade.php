@@ -50,11 +50,7 @@
                                     </p>
 
                                 </div>
-{{--                                <label for="time_end" class="col-md-4 col-form-label text-md-right">{{ __('Кінець') }}</label>--}}
 
-{{--                                <div class="col-md-8">--}}
-{{--                                  --}}
-{{--                                </div>--}}
                             </div>
 
 
@@ -72,7 +68,50 @@
                                 </div>
                             </div>
 
+                            <table class="table table-light table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">ПІБ,дата народження</th>
+                                    <th scope="col">основна спеціальнімть</th>
+                                    <th scope="col">робочий час</th>
+                                    <th scope="col">за сумістництвом</th>
+                                    <th scope="col">робочий час </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($listPersonnels as $listPersonnel )
+                                    <tr>
+                                        <th scope="row">{{$listPersonnel->user_id}}</th>
+                                        <td>{{$listPersonnel->full_name}}</td>
+                                        <td>
+                                            <input type="search" list="specialtys" name="specialties_id[]" value="{{$listPersonnel->specialties_id}}" >
+                                            <datalist id="specialtys">
+                                                @foreach($specialtys as $specialty)
+                                                    <option value="{{$specialty->id}}"> {{ $specialty ->name_special}} </option>
+                                                @endforeach
+                                            </datalist>
+                                            @error('specialty')
+                                            <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </td>
+                                        <td>
+                                            <input id="{{$listPersonnel->id.'work_time'}}" type="number" class="@error('work_time') is-invalid @enderror" name="work_time[]" value="{{$listPersonnel->work_time}}" required autocomplete="{{$listPersonnel->work_time}}" autofocus>
 
+                                            @error('work_time')
+                                            <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
