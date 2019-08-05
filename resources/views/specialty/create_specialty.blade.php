@@ -43,7 +43,7 @@
                                 <label for="tariff" class="col-md-4 col-form-label text-md-right">{{ __('Тариф (грн/год або грн/т') }}</label>
 
                                 <div class="col-md-8">
-                                    <input id="tariff" type="text" class="form-control @error('tariff') is-invalid @enderror" name="tariff" value="{{ old('tariff') }}" required autocomplete="tariff" autofocus>
+                                    <input id="tariff" type="number" min="0" max="99999" class="form-control @error('tariff') is-invalid @enderror" name="tariff" value="{{ old('tariff') }}" required autocomplete="tariff" autofocus>
 
                                     @error('tariff')
                                     <span class="invalid-feedback" role="alert">

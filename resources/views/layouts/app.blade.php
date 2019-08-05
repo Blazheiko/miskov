@@ -107,18 +107,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Замовлення</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Склад</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                                <a class="dropdown-item" href="#">Всі склади</a>
-                                <a class="dropdown-item" href="#">Склад №1</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Склад №2</a>
-                                <a class="dropdown-item" href="#">Склад №3</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Склад №4</a>
-                            </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('storage') }}">Склад</a>
                         </li>
+{{--                        <li class="nav-item dropdown">--}}
+{{--                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Склад</a>--}}
+{{--                            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">--}}
+{{--                                <a class="dropdown-item" href="#">Всі склади</a>--}}
+{{--                                <a class="dropdown-item" href="#">Склад №1</a>--}}
+{{--                                <div class="dropdown-divider"></div>--}}
+{{--                                <a class="dropdown-item" href="#">Склад №2</a>--}}
+{{--                                <a class="dropdown-item" href="#">Склад №3</a>--}}
+{{--                                <div class="dropdown-divider"></div>--}}
+{{--                                <a class="dropdown-item" href="#">Склад №4</a>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
                     </ul>
 {{--                    <form class="form-inline my-2 my-lg-0">--}}
 {{--                        <input class="form-control mr-sm-2" type="search" placeholder="Пошук" aria-label="Search">--}}

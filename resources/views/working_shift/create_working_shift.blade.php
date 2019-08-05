@@ -98,9 +98,76 @@
                                             @enderror
                                         </td>
                                         <td>
-                                            <input id="{{$listPersonnel->id.'work_time'}}" type="number" class="@error('work_time') is-invalid @enderror" name="work_time[]" value="{{$listPersonnel->work_time}}" required autocomplete="{{$listPersonnel->work_time}}" autofocus>
+                                            <input id="work_time" type="number" size="4" min="0" max="20" step="0.1" class="@error('work_time') is-invalid @enderror" name="work_time[]" value="{{$listPersonnel->work_time}}" required autocomplete="{{$listPersonnel->work_time}}" autofocus>
 
                                             @error('work_time')
+                                            <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </td>
+
+                                        <td>
+                                            <input type="search" list="specialtys" name="combined_specialties_id[]" value="{{$listPersonnel->specialties_id}}" >
+                                            <datalist id="specialtys">
+                                                @foreach($specialtys as $specialty)
+                                                    <option value="{{$specialty->id}}"> {{ $specialty ->name_special}} </option>
+                                                @endforeach
+                                            </datalist>
+                                            @error('specialty')
+                                            <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </td>
+                                        <td>
+                                            <input id="combined_time" type="number" size="4" min="0" max="20" step="0.1" class="@error('combined_time') is-invalid @enderror" name="combined_time[]" value="{{$listPersonnel->combined_time}}" required autocomplete="{{$listPersonnel->combined_time}}" autofocus>
+
+                                            @error('combined_time')
+                                            <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+
+                            <div class="form-group row">
+                                <label for="product" class="col-md-4 col-form-label text-md-right">{{ __('Продукція') }}</label>
+
+                                <div class="col-md-8">
+                                    <select id="product" name="product" >
+                                        @foreach($products as $product)
+                                        <option value="{{$product->id}}">{{$product->name}}</option>
+                                        @endforeach
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+                            <table class="table table-light table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">назва складу</th>
+                                    <th scope="col">кількість</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($listStorages as $listStorage )
+                                    <tr>
+                                        <th scope="row">{{$listStorage->storage_id}}</th>
+                                        <td>{{$listStorage->name}}</td>
+                                        <td>
+                                            <input id="quantity" type="number" size="6" min="0" max="20" step="0.1" class="@error('work_time') is-invalid @enderror" name="quantity[]" value="{{$listStorage->quantity}}" required autocomplete="{{$listStorage->quantity}}" autofocus>
+
+                                            @error('quantity')
                                             <span class="invalid-feedback" role="alert">
                                               <strong>{{ $message }}</strong>
                                             </span>

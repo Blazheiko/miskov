@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\ListPersonnel;
+use App\ListStorage;
 use App\Personnel;
+use App\Product;
 use App\Specialty;
+use App\Storage;
 use App\WorkingShift;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,6 +35,8 @@ class WorkingShiftController extends Controller
     public function create()
     {
         $personnels = Personnel::all();
+        $products =Product::all();
+        $storages = Storage::all();
         $specialtys = Specialty::all('id','name_special');
         $listPersonnels =array();
 
@@ -45,12 +50,23 @@ class WorkingShiftController extends Controller
             $listPersonnel->combined_time = 0;
             $listPersonnel->combined_specialties_id = $personnel->specialty;
             $listPersonnels[] = $listPersonnel;
-
         }
         Session::put('listPersonnels', $listPersonnels);
 
+        $listStorages = [];
+        foreach ($storages as $storage)
+        {
+            $listStorage = new ListStorage();
+            $listStorage->quantity = 0;
+            $listStorage->name = $storage->name ;
+            $listStorage->storage_id = $storage->id ;
+            $listStorages[] = $listStorage;
+        }
+        Session::put('$listStorages', $listStorages);
+
         return view('working_shift.create_working_shift')
-            ->with(['listPersonnels'=>$listPersonnels,'specialtys'=>$specialtys]);
+            ->with(['listPersonnels'=>$listPersonnels,'specialtys'=>$specialtys,
+                    'listStorages'=>$listStorages,'products'=>$products]);
     }
 
     /**
@@ -64,19 +80,20 @@ class WorkingShiftController extends Controller
 //        dd($request);
         $listPersonnels = Session::pull('listPersonnels', null);
         $user = Auth::user();
-        $workingShift =new WorkingShift ($request->all());
-        $workingShift->user_id=$user->id;
-        for ($i = 0;$i < count($listPersonnels); $i++ )
+        $workingShift = new WorkingShift ($request->all());
+        $workingShift->user_id = $user->id;
+        for ($i = 0; $i < count($listPersonnels); $i++ )
         {
-            $listPersonnels[$i]->work_time = work_time[i];
-
-
+            $listPersonnels[$i]->work_time      = $request->work_time[$i];
+            $listPersonnels[$i]->specialties_id = $request->specialties_id[$i];
+            $listPersonnels[$i]->combined_time  = $request->combined_time [$i];
+            $listPersonnels[$i]->combined_specialties_id  = $request->combined_specialties_id [$i];
         }
+        $workingShift->list_personnel = $listPersonnels;
 
         $workingShift->save();
 
-
-        return redirect()->route('listPersonnel.create',[$workingShift]);
+        return redirect()->route('workingShift.index' );
     }
 
     /**

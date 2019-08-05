@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Personnel;
 
@@ -50,6 +49,11 @@ class User extends Authenticatable
     public function products()
     {
         return $this->hasMany('App\Product');
+    }
+
+    public function storages()
+    {
+        return $this->hasMany('App\Storage');
     }
 
     public function listPersonnels()

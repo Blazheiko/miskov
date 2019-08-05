@@ -15,9 +15,11 @@ class CreateStoragesTable extends Migration
     {
         Schema::create('storages', function (Blueprint $table) {
             $table->Increments('id');
-            $table->integer('number');
+            $table->string('name');
             $table->string('descr');
             $table->integer('places');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
