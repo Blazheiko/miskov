@@ -165,7 +165,7 @@
                                         <th scope="row">{{$listStorage->storage_id}}</th>
                                         <td>{{$listStorage->name}}</td>
                                         <td>
-                                            <input id="quantity" type="number" size="6" min="0" max="20" step="0.1" class="@error('work_time') is-invalid @enderror" name="quantity[]" value="{{$listStorage->quantity}}" required autocomplete="{{$listStorage->quantity}}" autofocus>
+                                            <input id="quantity" type="number" size="6" min="0" max="20" step="0.1" class="@error('quantity') is-invalid @enderror" name="quantity[]" value="{{$listStorage->quantity}}" required autocomplete="{{$listStorage->quantity}}" autofocus>
 
                                             @error('quantity')
                                             <span class="invalid-feedback" role="alert">
@@ -181,10 +181,22 @@
                             </table>
 
                             <div class="form-group row mb-0">
+
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Зберегти') }}
-                                    </button>
+                                    <p>
+                                        <button type="button" class="btn btn-primary">
+                                            {{ __('Добавити вид продукції') }}
+                                        </button>
+                                        <button type="button" class="btn btn-primary">
+                                            {{ __('Добавити роботу в зміні') }}
+                                        </button>
+                                    </p>
+                                    <p>
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Зберегти') }}
+                                        </button>
+                                    </p>
+
                                 </div>
                             </div>
                         </form>

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\ListPersonnel;
+use App\ListProduct;
+use App\ListProductShift;
 use App\ListStorage;
+use App\ListStoragesShift;
 use App\Personnel;
 use App\Product;
 use App\Specialty;
@@ -22,7 +25,8 @@ class WorkingShiftController extends Controller
      */
     public function index()
     {
-        $workingShifts = WorkingShift::all();
+        $workingShifts = WorkingShift::select( ['date','time_start','time_end','created_at','updated_at'])
+            ->orderBy('date','desc')->get();
 
         return view('working_shift.working_shift', ['workingShifts' => $workingShifts] );
     }
@@ -53,20 +57,20 @@ class WorkingShiftController extends Controller
         }
         Session::put('listPersonnels', $listPersonnels);
 
-        $listStorages = [];
+        $listStoragesShifts = [];
         foreach ($storages as $storage)
         {
-            $listStorage = new ListStorage();
-            $listStorage->quantity = 0;
-            $listStorage->name = $storage->name ;
-            $listStorage->storage_id = $storage->id ;
-            $listStorages[] = $listStorage;
+            $listStoragesShift = new ListStoragesShift();
+            $listStoragesShift->quantity = 0;
+            $listStoragesShift->name = $storage->name ;
+            $listStoragesShift->storage_id = $storage->id ;
+            $listStoragesShifts[] = $listStoragesShift;
         }
-        Session::put('$listStorages', $listStorages);
+        Session::put('listStoragesShifts', $listStoragesShifts);
 
         return view('working_shift.create_working_shift')
             ->with(['listPersonnels'=>$listPersonnels,'specialtys'=>$specialtys,
-                    'listStorages'=>$listStorages,'products'=>$products]);
+                    'listStorages'=>$listStoragesShifts,'products'=>$products]);
     }
 
     /**
@@ -78,6 +82,7 @@ class WorkingShiftController extends Controller
     public function store(Request $request)
     {
 //        dd($request);
+        //Добавляем табель в смену
         $listPersonnels = Session::pull('listPersonnels', null);
         $user = Auth::user();
         $workingShift = new WorkingShift ($request->all());
@@ -90,6 +95,18 @@ class WorkingShiftController extends Controller
             $listPersonnels[$i]->combined_specialties_id  = $request->combined_specialties_id [$i];
         }
         $workingShift->list_personnel = $listPersonnels;
+
+        //Добавляем список произведенной продукции в смену 'products_id','quantity','storage'
+
+        $listStoragesShifts = Session::pull('listStoragesShifts', null);
+        $listProductShift = new ListProductShift();
+        $listProductShift->products_id = $request->product;
+        for ($i = 0; $i < count($listStoragesShifts); $i++ )
+        {
+            $listStoragesShifts[$i]->quantity = $request->quantity[$i];
+        }
+        $listProductShift->listStorages = $listStoragesShifts;
+        $workingShift->list_product = $listProductShift;
 
         $workingShift->save();
 

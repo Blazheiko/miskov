@@ -15,8 +15,6 @@ class CreateListProductsTable extends Migration
     {
         Schema::create('list_products', function (Blueprint $table) {
             $table->Increments('id');
-            $table->integer('working_shifts_id')->unsigned();
-            $table->foreign('working_shifts_id')->references('id')->on('working_shifts');
             $table->integer('products_id')->unsigned();
             $table->foreign('products_id')->references('id')->on('products');
             $table->integer('quantity');

@@ -8,13 +8,8 @@ class ListProduct extends Model
 {
     //модель для продукції виробленої за зміну
     protected $fillable = [
-        'working_shifts_id','products_id','quantity','storage'
+        'products_id','quantity','storage'
     ];
-
-    public function workingShift()
-    {
-        return $this->belongsTo('App\WorkingShift');
-    }
 
     public function product()
     {
