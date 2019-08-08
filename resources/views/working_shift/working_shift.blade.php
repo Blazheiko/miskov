@@ -45,18 +45,18 @@
                                         <th scope="row">{{$workingShift->id}}</th>
                                         <td>{{$workingShift->date}}</td>
                                         <td>{{$workingShift->time_start}}</td>
-                                        <td>{{$workingShift->time_end}}</td>
+                                        <td>{{$workingShift->time_end }}</td>
                                         <td>
                                             <div class="form-group">
                                                 <div class="col-md-8 col-md-offset-4">
-                                                    <a href="{{url('/workingShift/'.$workingShift->id.'/edit')}}" class="btn btn-primary">табель</a>
+                                                    <a href="{{url('/workingShift/'.$workingShift->id)}}" class="btn btn-primary">Подивитись</a>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-group">
                                                 <div class="col-md-8 col-md-offset-4">
-                                                    <a href="{{url('/workingShift/'.$workingShift->id.'/edit')}}" class="btn btn-primary">продкція</a>
+                                                    <a href="{{url('/workingShift/'.$workingShift->id)}}" class="btn btn-primary">продкція</a>
                                                 </div>
                                             </div>
                                         </td>

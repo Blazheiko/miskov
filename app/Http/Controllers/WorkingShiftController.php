@@ -11,6 +11,7 @@ use App\Personnel;
 use App\Product;
 use App\Specialty;
 use App\Storage;
+use App\User;
 use App\WorkingShift;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,7 @@ class WorkingShiftController extends Controller
      */
     public function index()
     {
-        $workingShifts = WorkingShift::select( ['date','time_start','time_end','created_at','updated_at'])
+        $workingShifts = WorkingShift::select( ['id','date','time_start','time_end','created_at','updated_at'])
             ->orderBy('date','desc')->get();
 
         return view('working_shift.working_shift', ['workingShifts' => $workingShifts] );
@@ -121,7 +122,20 @@ class WorkingShiftController extends Controller
      */
     public function show($id)
     {
-        //
+        $workingShift = WorkingShift::find($id);
+        $listPersonnels = $workingShift->list_personnel;
+        $listProductShift = $workingShift->list_product;
+        $listStoragesShifts = $listProductShift['listStorages'] ;
+        $productName = Product::find($listProductShift['products_id']);
+        $foreman = User::find($workingShift->user_id);
+
+//        dd($listProductShift);
+
+        return view('working_shift.show_working_shift')
+            ->with(['workingShift'=>$workingShift,'listPersonnels'=>$listPersonnels,
+                'listStoragesShifts'=>$listStoragesShifts,'productName'=>$productName,
+                'foreman'=>$foreman]);
+
     }
 
     /**
